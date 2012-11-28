@@ -12,7 +12,7 @@ module ResponseCodeMatchers
   class ResponseCodeMatcher
     def initialize(expected, name)
       @expected    = expected
-      @description = name.to_s.gsub("_", " ")
+      @description = name.gsub("_", " ")
     end
 
     def matches?(response)
