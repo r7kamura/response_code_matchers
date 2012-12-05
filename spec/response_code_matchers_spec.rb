@@ -65,4 +65,14 @@ describe ResponseCodeMatchers do
       end
     end
   end
+
+  context "when receiver does not have a method #code" do
+    let(:receiver) do
+      mock(:accepted? => true)
+    end
+
+    it "calls original receiver.xxx?" do
+      receiver.should be_accepted
+    end
+  end
 end

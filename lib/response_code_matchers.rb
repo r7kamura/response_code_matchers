@@ -11,25 +11,48 @@ module ResponseCodeMatchers
 
   class ResponseCodeMatcher
     def initialize(expected, name)
-      @expected    = expected
-      @description = name.gsub("_", " ")
+      @expected = expected
+      @name     = name
     end
 
     def matches?(response)
-      @actual = response.code
-      @actual == @expected
+      @valid = response.respond_to?(:code)
+      if @valid
+        @actual = response.code
+        @actual == @expected
+      else
+        response.__send__(method_name)
+      end
     end
 
     def description
-      "be #@description"
+      "be #{human_name}"
     end
 
     def failure_message
-      "expected response code to be #@expected, but #@actual"
+      if @valid
+        "expected response code to be #@expected, but #@actual"
+      else
+        "expected #{method_name} to return true, got false"
+      end
     end
 
     def negative_failure_message
-      "expected response code not to be #@expected, but #@actual"
+      if @valid
+        "expected response code not to be #@expected, but #@actual"
+      else
+        "expected #{method_name} to return false, got true"
+      end
+    end
+
+    private
+
+    def method_name
+      "#@name?"
+    end
+
+    def human_name
+      @name.gsub("_", " ")
     end
   end
 end
