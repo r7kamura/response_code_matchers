@@ -59,6 +59,22 @@ end
 ```
 
 
+## Advantage
+[Rack::Response](https://github.com/rack/rack/blob/master/lib/rack/response.rb) has predicative methods like `#not_found?`, `#bad_request?`, and etc. so we can use `response.should be_not_found` without this gem.
+
+There are 2 advantages to use this gem.
+1. The range of differences that Rack::Response does not have
+2. Useful failure messages for each failed reason
+
+```
+# without response_code_matchers.gem
+expected not_found? to return true, got false
+
+# with  response_code_matchers.gem
+expected response code to be 404, but 400
+```
+
+
 ## Matchers
 ```ruby
 100: response.should be_continue
