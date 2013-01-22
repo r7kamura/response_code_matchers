@@ -66,6 +66,16 @@ describe ResponseCodeMatchers do
     end
   end
 
+  context "when receiver responds to #status" do
+    let(:receiver) do
+      mock(:status => 406)
+    end
+
+    it "calls original receiver.xxx?" do
+      receiver.should be_not_acceptable
+    end
+  end
+
   context "when receiver does not have a method #code" do
     let(:receiver) do
       mock(:accepted? => true)

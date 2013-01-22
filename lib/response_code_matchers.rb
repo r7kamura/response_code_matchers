@@ -16,9 +16,11 @@ module ResponseCodeMatchers
     end
 
     def matches?(response)
-      @valid = response.respond_to?(:code)
-      if @valid
+      if @valid = response.respond_to?(:code)
         @actual = response.code
+        @actual == @expected
+      elsif @valid = response.respond_to?(:status)
+        @actual = response.status.to_s
         @actual == @expected
       else
         response.__send__(method_name)
