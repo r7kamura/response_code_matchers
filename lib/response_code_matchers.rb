@@ -2,8 +2,17 @@ require "response_code_matchers/version"
 require "rack"
 
 module ResponseCodeMatchers
+
+  def status_name(name)
+
+  end
+
   Rack::Utils::SYMBOL_TO_STATUS_CODE.each do |name, code|
-    name = name.to_s.gsub("'", "")
+    name = name.to_s.tap do |t|
+      t.gsub!("'", '')
+      t.gsub!(/\(.*\)/, '')
+      t.gsub!(/\_$/, '')
+    end
     define_method("be_#{name}") do
       ResponseCodeMatcher.new(code.to_s, name)
     end
