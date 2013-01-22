@@ -40,7 +40,6 @@ describe ResponseCodeMatchers do
     415 be_unsupported_media_type
     416 be_requested_range_not_satisfiable
     417 be_expectation_failed
-    418 be_im_a_teapot
     422 be_unprocessable_entity
     423 be_locked
     424 be_failed_dependency
@@ -63,6 +62,16 @@ describe ResponseCodeMatchers do
       it "matches http response code #{code}" do
         response.should send(matcher)
       end
+    end
+  end
+
+  context "when receiver responds to #status" do
+    let(:receiver) do
+      mock(:status => 406)
+    end
+
+    it "calls original receiver.xxx?" do
+      receiver.should be_not_acceptable
     end
   end
 

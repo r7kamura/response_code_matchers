@@ -2,8 +2,13 @@ require "response_code_matchers/version"
 require "rack"
 
 module ResponseCodeMatchers
+
   Rack::Utils::SYMBOL_TO_STATUS_CODE.each do |name, code|
-    name = name.to_s.gsub("'", "")
+    name = name.to_s.tap do |t|
+      t.gsub!("'", '')      # remove single quotes
+      t.gsub!(/\(.*\)/, '') # remove anything in parentheses
+      t.gsub!(/\_$/, '')    # remove trailing underscores
+    end
     define_method("be_#{name}") do
       ResponseCodeMatcher.new(code.to_s, name)
     end
@@ -16,9 +21,11 @@ module ResponseCodeMatchers
     end
 
     def matches?(response)
-      @valid = response.respond_to?(:code)
-      if @valid
+      if @valid = response.respond_to?(:code)
         @actual = response.code
+        @actual == @expected
+      elsif @valid = response.respond_to?(:status)
+        @actual = response.status.to_s
         @actual == @expected
       else
         response.__send__(method_name)
