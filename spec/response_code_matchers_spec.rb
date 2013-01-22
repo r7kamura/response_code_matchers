@@ -40,7 +40,6 @@ describe ResponseCodeMatchers do
     415 be_unsupported_media_type
     416 be_requested_range_not_satisfiable
     417 be_expectation_failed
-    418 be_im_a_teapot
     422 be_unprocessable_entity
     423 be_locked
     424 be_failed_dependency

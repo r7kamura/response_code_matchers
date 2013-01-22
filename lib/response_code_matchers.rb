@@ -3,15 +3,11 @@ require "rack"
 
 module ResponseCodeMatchers
 
-  def status_name(name)
-
-  end
-
   Rack::Utils::SYMBOL_TO_STATUS_CODE.each do |name, code|
     name = name.to_s.tap do |t|
-      t.gsub!("'", '')
-      t.gsub!(/\(.*\)/, '')
-      t.gsub!(/\_$/, '')
+      t.gsub!("'", '')      # remove single quotes
+      t.gsub!(/\(.*\)/, '') # remove anything in parentheses
+      t.gsub!(/\_$/, '')    # remove trailing underscores
     end
     define_method("be_#{name}") do
       ResponseCodeMatcher.new(code.to_s, name)
