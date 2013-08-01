@@ -1,7 +1,7 @@
 # ResponseCodeMatchers
 
 Provide rspec matchers to match http response code.  
-The receiver of this matcher should have `#code` method which returns http status code.
+The receiver of this matcher should have `#code` or `#status` method which returns http status code.
 
 ## Installation
 ```
