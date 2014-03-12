@@ -56,32 +56,32 @@ describe ResponseCodeMatchers do
   ].each_slice(2) do |code, matcher|
     describe "##{matcher}" do
       let(:response) do
-        mock(:code => code)
+        double(:code => code)
       end
 
       it "matches http response code #{code}" do
-        response.should send(matcher)
+        expect(response).to send(matcher)
       end
     end
   end
 
   context "when receiver responds to #status" do
     let(:receiver) do
-      mock(:status => 406)
+      double(:status => 406)
     end
 
     it "calls original receiver.xxx?" do
-      receiver.should be_not_acceptable
+      expect(receiver).to be_not_acceptable
     end
   end
 
   context "when receiver does not have a method #code" do
     let(:receiver) do
-      mock(:accepted? => true)
+      double(:accepted? => true)
     end
 
     it "calls original receiver.xxx?" do
-      receiver.should be_accepted
+      expect(receiver).to be_accepted
     end
   end
 end

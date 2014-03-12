@@ -44,7 +44,7 @@ module ResponseCodeMatchers
       end
     end
 
-    def negative_failure_message
+    def failure_message_when_negated
       if @valid
         "expected response code not to be #@expected, but #@actual"
       else
