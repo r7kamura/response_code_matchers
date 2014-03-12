@@ -1,0 +1,7 @@
+language: ruby
+gemfile:
+  - gemfiles/rspec-2.14.gemfile
+  - gemfiles/rspec-3.0.gemfile
+  - gemfiles/rspec-2.99.gemfile
+
+script: 'bundle exec rspec'
