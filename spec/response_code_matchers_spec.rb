@@ -60,7 +60,7 @@ describe ResponseCodeMatchers do
       end
 
       it "matches http response code #{code}" do
-        response.should send(matcher)
+        expect(response).to send(matcher)
       end
     end
   end
@@ -71,7 +71,7 @@ describe ResponseCodeMatchers do
     end
 
     it "calls original receiver.xxx?" do
-      receiver.should be_not_acceptable
+      expect(receiver).to be_not_acceptable
     end
   end
 
@@ -81,7 +81,7 @@ describe ResponseCodeMatchers do
     end
 
     it "calls original receiver.xxx?" do
-      receiver.should be_accepted
+      expect(receiver).to be_accepted
     end
   end
 end
