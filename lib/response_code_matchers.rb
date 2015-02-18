@@ -20,15 +20,17 @@ module ResponseCodeMatchers
       @name     = name
     end
 
-    def matches?(response)
-      if @valid = response.respond_to?(:code)
-        @actual = response.code
+    def matches?(obj)
+      return obj.__send__(method_name) unless obj.respond_to?(:header) && obj.respond_to?(:body)
+
+      if @valid = obj.respond_to?(:code)
+        @actual = obj.code
         @actual == @expected
-      elsif @valid = response.respond_to?(:status)
-        @actual = response.status.to_s
+      elsif @valid = obj.respond_to?(:status)
+        @actual = obj.status.to_s
         @actual == @expected
       else
-        response.__send__(method_name)
+        obj.__send__(method_name)
       end
     end
 
