@@ -56,7 +56,7 @@ describe ResponseCodeMatchers do
   ].each_slice(2) do |code, matcher|
     describe "##{matcher}" do
       let(:response) do
-        double(:code => code)
+        double(:code => code, :header => [], :body => "")
       end
 
       it "matches http response code #{code}" do
@@ -67,7 +67,7 @@ describe ResponseCodeMatchers do
 
   context "when receiver responds to #status" do
     let(:receiver) do
-      double(:status => 406)
+      double(:status => 406, :header => [], :body => "")
     end
 
     it "calls original receiver.xxx?" do
@@ -77,7 +77,7 @@ describe ResponseCodeMatchers do
 
   context "when receiver does not have a method #code" do
     let(:receiver) do
-      double(:accepted? => true)
+      double(:accepted? => true, :header => [], :body => "")
     end
 
     it "calls original receiver.xxx?" do

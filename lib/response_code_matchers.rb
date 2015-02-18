@@ -21,6 +21,8 @@ module ResponseCodeMatchers
     end
 
     def matches?(response)
+      return response.__send__(method_name) unless response.respond_to?(:header) && response.respond_to?(:body)
+
       if @valid = response.respond_to?(:code)
         @actual = response.code
         @actual == @expected
