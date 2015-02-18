@@ -1,5 +1,4 @@
-# ResponseCodeMatchers
-
+# ResponseCodeMatchers [![Build Status](https://travis-ci.org/r7kamura/response_code_matchers.svg?branch=master)](https://travis-ci.org/r7kamura/response_code_matchers)
 Provide rspec matchers to match http response code.  
 The receiver of this matcher should have `#code` or `#status` method which returns http status code,
  and `#header` and `#headers` methods.
