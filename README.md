@@ -96,7 +96,6 @@ expected response code to be 404, but 400
 303: response.should be_see_other
 304: response.should be_not_modified
 305: response.should be_use_proxy
-306: response.should be_reserved
 307: response.should be_temporary_redirect
 400: response.should be_bad_request
 401: response.should be_unauthorized
@@ -111,10 +110,10 @@ expected response code to be 404, but 400
 410: response.should be_gone
 411: response.should be_length_required
 412: response.should be_precondition_failed
-413: response.should be_request_entity_too_large
-414: response.should be_request_uri_too_long
+413: response.should be_payload_too_large
+414: response.should be_uri_too_long
 415: response.should be_unsupported_media_type
-416: response.should be_requested_range_not_satisfiable
+416: response.should be_range_not_satisfiable
 417: response.should be_expectation_failed
 418: response.should be_im_a_teapot
 422: response.should be_unprocessable_entity
