@@ -20,7 +20,6 @@ describe ResponseCodeMatchers do
     303 be_see_other
     304 be_not_modified
     305 be_use_proxy
-    306 be_reserved
     307 be_temporary_redirect
     400 be_bad_request
     401 be_unauthorized
@@ -35,10 +34,10 @@ describe ResponseCodeMatchers do
     410 be_gone
     411 be_length_required
     412 be_precondition_failed
-    413 be_request_entity_too_large
-    414 be_request_uri_too_long
+    413 be_payload_too_large
+    414 be_uri_too_long
     415 be_unsupported_media_type
-    416 be_requested_range_not_satisfiable
+    416 be_range_not_satisfiable
     417 be_expectation_failed
     422 be_unprocessable_entity
     423 be_locked
