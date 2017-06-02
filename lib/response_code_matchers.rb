@@ -40,7 +40,7 @@ module ResponseCodeMatchers
 
     def failure_message
       if @valid
-        "expected response code to be #@expected, but #@actual"
+        "expected response code to be #@expected, got #@actual"
       else
         "expected #{method_name} to return true, got false"
       end
@@ -48,7 +48,7 @@ module ResponseCodeMatchers
 
     def failure_message_when_negated
       if @valid
-        "expected response code not to be #@expected, but #@actual"
+        "expected response code not to be #@expected, got #@actual"
       else
         "expected #{method_name} to return false, got true"
       end
