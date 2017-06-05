@@ -72,7 +72,7 @@ There are 2 advantages to use this gem.
 expected not_found? to return true, got false
 
 # with response_code_matchers.gem
-expected response code to be 404, but 400
+expected response code to be 404, got 400
 ```
 
 
