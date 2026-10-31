@@ -14,6 +14,22 @@ module ResponseCodeMatchers
     end
   end
 
+  # Compatibility matchers for status names that were renamed or removed in Rack 3.1.
+  # Each is defined only when Rack no longer provides a matcher with that name.
+  LEGACY_MATCHERS = {
+    "payload_too_large" => [413, "content_too_large"],
+    "unprocessable_entity" => [422, "unprocessable_content"],
+    "not_extended" => [510, "not_extended"],
+  }.freeze
+
+  LEGACY_MATCHERS.each do |legacy_name, (code, name)|
+    next if method_defined?("be_#{legacy_name}")
+
+    define_method("be_#{legacy_name}") do
+      ResponseCodeMatcher.new(code.to_s, name)
+    end
+  end
+
   class ResponseCodeMatcher
     def initialize(expected, name)
       @expected = expected
