@@ -11,7 +11,11 @@ Gem::Specification.new do |gem|
   gem.description   = "Provide rspec matchers to match http response code"
   gem.summary       = "RSpec utility matchers for http response code"
   gem.homepage      = "https://github.com/r7kamura/response_code_matchers"
+  gem.license       = "MIT"
   gem.required_ruby_version = ">= 3.3"
+
+  gem.metadata["rubygems_mfa_required"] = "true"
+  gem.metadata["source_code_uri"] = gem.homepage
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
