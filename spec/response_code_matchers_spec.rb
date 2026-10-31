@@ -34,12 +34,12 @@ describe ResponseCodeMatchers do
     410 be_gone
     411 be_length_required
     412 be_precondition_failed
-    413 be_payload_too_large
+    413 be_content_too_large
     414 be_uri_too_long
     415 be_unsupported_media_type
     416 be_range_not_satisfiable
     417 be_expectation_failed
-    422 be_unprocessable_entity
+    422 be_unprocessable_content
     423 be_locked
     424 be_failed_dependency
     426 be_upgrade_required
@@ -51,7 +51,6 @@ describe ResponseCodeMatchers do
     505 be_http_version_not_supported
     506 be_variant_also_negotiates
     507 be_insufficient_storage
-    510 be_not_extended
   ].each_slice(2) do |code, matcher|
     describe "##{matcher}" do
       let(:response) do
